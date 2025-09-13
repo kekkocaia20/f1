@@ -20,3 +20,5 @@ Tecnologie
 - API Jopilca – dati ufficiali delle stagioni, piloti e team.
 
 - InfinityFree – hosting gratuito compatibile con PHP.
+
+link: f1rankings.infinityfree.me
