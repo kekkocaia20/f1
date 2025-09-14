@@ -1,4 +1,25 @@
 <?php
+// Funzione per recuperare dati dall'API con cURL
+function getApiData($url, $cache_file) {
+    if (file_exists($cache_file) && (time() - filemtime($cache_file) < 86400)) {
+        return json_decode(file_get_contents($cache_file));
+    }
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    $response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($http_code === 200 && $response) {
+        file_put_contents($cache_file, $response);
+        return json_decode($response);
+    }
+    return null;
+}
+
 $anno_selezionato = isset($_GET['anno']) ? htmlspecialchars($_GET['anno']) : date("Y");
 $piloti_url = "http://api.jolpi.ca/ergast/f1/$anno_selezionato/driverStandings.json";
 $costruttori_url = "http://api.jolpi.ca/ergast/f1/$anno_selezionato/constructorStandings.json";
@@ -27,22 +48,38 @@ if ($piloti_json && $costruttori_json) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="f1.css">
+    <link rel="stylesheet" href="calendar.css">
     <title>Classifiche Formula 1</title>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-md d-flex justify-content-center align-items-center">
-    <img src="f1_logo.png" alt="Logo" class="navbar-logo">
-    <a class="navbar-brand" href="#">Classifiche F1</a>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-md d-flex justify-content-between align-items-center">
+    <a class="navbar-brand" href="index.php">
+      <img src="f1_logo.png" alt="Logo" class="navbar-logo">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.php">Classifiche</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="calendar.php">Calendario</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
 
 <div class="containerr">
-    <h1>Storico Classifiche F1</h1>
+    <h1>Classifiche F1</h1>
 
     <form action="" method="get">
         <label for="anno">Seleziona l'anno:</label>

@@ -36,6 +36,28 @@ body {
     align-items: center;
 }
 
+/* Stili per l'elemento di navigazione (il contenitore) */
+.nav-item {
+    margin: 0 1rem; /* Spazio tra gli elementi */
+}
+
+/* Stili per il link di navigazione (il testo) */
+.nav-link {
+    font-family: 'Teko', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff !important; /* Testo bianco */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23AC2109' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
 /* Stili per il contenitore principale, per centrare il contenuto */
 .containerr {
     max-width: 100%;       
@@ -60,6 +82,7 @@ h1, h2 {
 form {
     text-align: center;
     margin-bottom: 0.2rem;
+    margin-bottom: 2rem; /* Aggiunge più spazio sotto la form */
 }
 
 label {
@@ -122,6 +145,7 @@ td {
     overflow: visible;         /* tutto il testo visibile */
     font-size: 1rem;           /* dimensione di base */
     padding: 12px;             /* padding di base */
+    color: #fff; /* Ensures white text for all table cells */
 }
 
 /* Stili per il messaggio di errore */
@@ -183,6 +207,7 @@ p {
         width: auto;            /* non occupa tutto lo spazio */
         margin-left: auto;
         margin-right: auto;     /* forza centratura */
+        min-width: 700px; /* Esempio: larghezza minima per i tablet, puoi regolarla */
       }
       th, td {
         font-size: 0.9rem;
