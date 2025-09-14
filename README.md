@@ -1,24 +1,26 @@
-Classifiche F1 – Stagioni e Piloti
+Classifiche F1 – Stagioni, Piloti e Circuiti
 
 Un sito web leggero in PHP che mostra le classifiche aggiornate di Formula 1 per piloti e team, stagione per stagione. 
 I dati vengono presi direttamente dall’API di Jopilca, così da avere sempre informazioni aggiornate senza fatica.
 
-Caratteristiche principali
+Caratteristiche principali:
 
 - Visualizzazione semplice e chiara delle classifiche F1.
 
 - Aggiornamento automatico tramite API.
 
-- Interfaccia pulita, facile da consultare da desktop e mobile.
+- Calendario dei circuiti di ogni stagione, con la possibilità di visualizzare la classifica aggiornata in base al circuito appena disputato.
 
-Tecnologie
+- Interfaccia pulita, facile da consultare sia da desktop che da mobile.
+
+Tecnologie utilizzate:
 
 - PHP – per le chiamate all’API e il rendering dinamico dei dati.
 
 - HTML & CSS – per struttura e stile del sito.
 
-- API Jopilca – dati ufficiali delle stagioni, piloti e team.
+- API Jopilca – per dati ufficiali delle stagioni, piloti, team e circuiti.
 
 - InfinityFree – hosting gratuito compatibile con PHP.
 
-link: f1rankings.infinityfree.me
+Link al sito: f1rankings.infinityfree.me
